@@ -1,0 +1,21 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MasterG.cs">
+    <Files>
+      <File FileName="Assets\Scripts\DataSample.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AllGameData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MasterM.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MasterG.cs" Line="1618" Column="3" />
+      <File FileName="Assets\Scripts\InventoryManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StoreManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SlotManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FertilizeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WateringManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\RegularViewManager.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

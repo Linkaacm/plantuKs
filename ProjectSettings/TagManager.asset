@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Background
+  - Plants
+  - NewUI
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 2520088721
+    locked: 0
+  - name: slots
+    uniqueID: 2083311349
+    locked: 0
+  - name: firstRibbon
+    uniqueID: 3834520725
     locked: 0

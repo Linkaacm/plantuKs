@@ -25,7 +25,7 @@ public class AllGameData : MonoBehaviour
 	{
 		instance = this;
 
-		fileName = "GreenhouseData.json";
+		fileName = "NewGreenhouseData.json";
 		playerData = new DataSample ();
 		LoadData ();
 	}
@@ -46,6 +46,7 @@ public class AllGameData : MonoBehaviour
 				playerData.plant_isUsed [i] = false;
 				//playerData.plant_ageMonths [i] = 0;
 				playerData.plant_isShiny [i] = false;
+				playerData.plant_congratulations [i] = false;
 				playerData.plant_name [i] = "name";
 				playerData.plant_nickname [i] = "nickname";
 

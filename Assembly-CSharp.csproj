@@ -52,12 +52,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AllGameData.cs" />
+     <Compile Include="Assets\Scripts\CongratsManager.cs" />
      <Compile Include="Assets\Scripts\DataSample.cs" />
      <Compile Include="Assets\Scripts\FertilizeManager.cs" />
      <Compile Include="Assets\Scripts\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\MasterG.cs" />
      <Compile Include="Assets\Scripts\MasterM.cs" />
      <Compile Include="Assets\Scripts\PlantManager.cs" />
+     <Compile Include="Assets\Scripts\RearrangeFinisher.cs" />
+     <Compile Include="Assets\Scripts\RearrangeInitiator.cs" />
      <Compile Include="Assets\Scripts\RegularViewManager.cs" />
      <Compile Include="Assets\Scripts\SlotManager.cs" />
      <Compile Include="Assets\Scripts\SowingManager.cs" />

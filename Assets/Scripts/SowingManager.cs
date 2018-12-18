@@ -8,17 +8,22 @@ public class SowingManager : MonoBehaviour {
 
 	public Transform[] ninePossibleSlots = new Transform[9];
 
+	private Transform[] nineRedSlots = new Transform[9];
+	private Transform[] nineGreenSlots = new Transform[9];
+
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
-		/*
-		for (int i = 0; i < 9; i++)
+		//Sets the red "slots" and the green ones
+		for (int i = 0; i < ninePossibleSlots.Length; i++)
 		{
-			ninePossibleSlots [i] = this.transform.GetChild (i);
+			//First red
+			nineRedSlots [i] = ninePossibleSlots [i].GetChild (0);
+			//Then green
+			nineGreenSlots [i] = ninePossibleSlots [i].GetChild (1);
 		}
-		
+
 		CheckForFreeSlots ();
-		*/
 	}
 	
 	// Update is called once per frame
@@ -31,6 +36,7 @@ public class SowingManager : MonoBehaviour {
 		indexForNewPlant = newValue;
 	}
 
+	/*
 	public void CheckForFreeSlots()
 	{
 		for (int i = 0; i < 9; i++)
@@ -45,4 +51,28 @@ public class SowingManager : MonoBehaviour {
 			}
 		}
 	}
+	*/
+
+	//If used, space turns red, otherwise turns green
+	public void CheckForFreeSlots()
+	{
+
+		for (int i = 0; i < 9; i++)
+		{
+			if (AllGameData.instance.playerData.plant_isUsed [i])
+			{
+				//Turn on red, turn off green
+				nineGreenSlots [i].gameObject.SetActive (false);
+				nineRedSlots [i].gameObject.SetActive (true);
+			}
+
+			else
+			{
+				//Turn on green, turn off red
+				nineGreenSlots [i].gameObject.SetActive (true);
+				nineRedSlots [i].gameObject.SetActive (false);
+			}
+		}
+	}
+
 }

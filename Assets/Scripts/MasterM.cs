@@ -38,7 +38,7 @@ public class MasterM : MonoBehaviour
 
 	void Update()
 	{
-		Debug.Log (System.DateTime.Now.Ticks);
+		//Debug.Log (System.DateTime.Now.Ticks);
 	}
 
 	public void ChargeScene()

@@ -13,6 +13,7 @@ public class DataSample
 
 	public bool[] plant_isUsed = new bool[9];
 	public bool[] plant_isShiny = new bool[9];
+	public bool[] plant_congratulations = new bool[9];
 	public string[] plant_name = new string[9];
 	public string[] plant_nickname = new string[9];
 

@@ -29,7 +29,21 @@ public class RegularViewManager : MonoBehaviour
 					miniInfos[i].GetChild (0).gameObject.SetActive (false);					//We DO NOT need the sprite
 					miniInfos[i].GetChild (1).gameObject.SetActive (true);					//We set the remaining time
 
-					miniInfos [i].GetChild (1).GetComponent<Text> ().text = AllGameData.instance.playerData.plant_timeLeftSeconds [i] + "s";
+					if (AllGameData.instance.playerData.plant_timeLeftSeconds [i] < 60)
+					{
+						miniInfos [i].GetChild (1).GetComponent<Text> ().text = AllGameData.instance.playerData.plant_timeLeftSeconds [i] + "s";
+					}
+
+					else if (AllGameData.instance.playerData.plant_timeLeftSeconds [i] >= 60 && AllGameData.instance.playerData.plant_timeLeftSeconds [i] < 3600)
+					{
+						miniInfos [i].GetChild (1).GetComponent<Text> ().text = (AllGameData.instance.playerData.plant_timeLeftSeconds [i] / 60) + "m";
+					}
+
+					else if (AllGameData.instance.playerData.plant_timeLeftSeconds [i] >= 3600 && AllGameData.instance.playerData.plant_timeLeftSeconds [i] < 100000)
+					{
+						miniInfos [i].GetChild (1).GetComponent<Text> ().text = (AllGameData.instance.playerData.plant_timeLeftSeconds [i] / 3600) + "h";
+					}
+
 				}
 				else
 				{
@@ -43,4 +57,5 @@ public class RegularViewManager : MonoBehaviour
 			}
 		}
 	}
+		
 }

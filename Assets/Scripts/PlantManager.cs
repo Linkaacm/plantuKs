@@ -17,6 +17,9 @@ public class PlantManager : MonoBehaviour {
 	[HideInInspector] public short plantAge;
 	[HideInInspector] public short plantPhase;
 
+	private bool masterIsWatering = false;
+	private bool regularViewIsOn = false;
+
 
 	// Use this for initialization
 	void Start ()
@@ -34,7 +37,10 @@ public class PlantManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && FindObjectOfType<MasterG> ().panelRegularView.gameObject.activeSelf)
+		masterIsWatering = FindObjectOfType<MasterG> ().getIsWatering ();
+		regularViewIsOn = FindObjectOfType<MasterG> ().panelRegularView.gameObject.activeSelf;
+
+		if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && regularViewIsOn && !masterIsWatering)
 		{
 			CheckTouchSelection (Input.GetTouch (0));
 		}

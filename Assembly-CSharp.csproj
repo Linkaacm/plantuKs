@@ -58,6 +58,10 @@
      <Compile Include="Assets\Scripts\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\MasterG.cs" />
      <Compile Include="Assets\Scripts\MasterM.cs" />
+     <Compile Include="Assets\Scripts\PHFertilizeManager.cs" />
+     <Compile Include="Assets\Scripts\PHRearrangeBegins.cs" />
+     <Compile Include="Assets\Scripts\PHRearrangeFinishes.cs" />
+     <Compile Include="Assets\Scripts\PHSowManager.cs" />
      <Compile Include="Assets\Scripts\PlantManager.cs" />
      <Compile Include="Assets\Scripts\RearrangeFinisher.cs" />
      <Compile Include="Assets\Scripts\RearrangeInitiator.cs" />

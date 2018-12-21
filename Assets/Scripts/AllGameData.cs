@@ -25,7 +25,7 @@ public class AllGameData : MonoBehaviour
 	{
 		instance = this;
 
-		fileName = "NewGreenhouseData.json";
+		fileName = "NewGreenhouseData3.json";
 		playerData = new DataSample ();
 		LoadData ();
 	}

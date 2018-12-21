@@ -22,6 +22,7 @@ public class MasterG : MonoBehaviour
 	public Transform panelCongratulations;
 
 	public Transform slots;
+	public Transform placeHolders;
 
 	public GameObject WateringCanPrefab;
 
@@ -79,6 +80,54 @@ public class MasterG : MonoBehaviour
 	void Update ()
 	{
 		CheckForMaxPlant ();
+	}
+
+	public void DisablePHScripts()
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHSowManager> ().enabled = false;
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHFertilizeManager> ().enabled = false;
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHRearrangeBegins> ().enabled = false;
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHRearrangeFinishes> ().enabled = false;
+		}
+	}
+
+	public void  ActivatePHSow()
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHSowManager> ().enabled = true;
+		}
+	}
+
+	public void  ActivatePHFertilize()
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHFertilizeManager> ().enabled = true;
+		}
+	}
+
+	public void  ActivatePHRearrangeBegins()
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHRearrangeBegins> ().enabled = true;
+		}
+	}
+
+	public void  ActivatePHRearrangeFinishes()
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			placeHolders.GetChild (i).GetChild (1).GetComponent<PHRearrangeFinishes> ().enabled = true;
+		}
+	}
+
+	public bool getIsWatering()
+	{
+		return isWatering;
 	}
 
 	public void CheckForMaxPlant()
@@ -178,6 +227,9 @@ public class MasterG : MonoBehaviour
 		panelRearrangeBegins.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (false);
 		panelCongratulations.gameObject.SetActive (false);
+
+		DisablePHScripts ();
+		placeHolders.gameObject.SetActive (false);
 	}
 
 	public void LeaveInfo()
@@ -287,6 +339,8 @@ public class MasterG : MonoBehaviour
 		{
 			LeaveAllPanels ();
 			panelSowing.gameObject.SetActive (true);
+			placeHolders.gameObject.SetActive (true);
+			ActivatePHSow ();
 
 			StartCoroutine (WaitOneUpdateCycle ());
 			panelSowing.GetComponent<SowingManager> ().SetNewPlantIndex (0);
@@ -304,6 +358,8 @@ public class MasterG : MonoBehaviour
 		{
 			LeaveAllPanels ();
 			panelSowing.gameObject.SetActive (true);
+			placeHolders.gameObject.SetActive (true);
+			ActivatePHSow ();
 
 			StartCoroutine (WaitOneUpdateCycle ());
 			panelSowing.GetComponent<SowingManager> ().SetNewPlantIndex (1);
@@ -321,6 +377,8 @@ public class MasterG : MonoBehaviour
 		{
 			LeaveAllPanels ();
 			panelSowing.gameObject.SetActive (true);
+			placeHolders.gameObject.SetActive (true);
+			ActivatePHSow ();
 
 			StartCoroutine (WaitOneUpdateCycle ());
 			panelSowing.GetComponent<SowingManager> ().SetNewPlantIndex (2);
@@ -338,6 +396,8 @@ public class MasterG : MonoBehaviour
 		{
 			LeaveAllPanels ();
 			panelSowing.gameObject.SetActive (true);
+			placeHolders.gameObject.SetActive (true);
+			ActivatePHSow ();
 
 			StartCoroutine (WaitOneUpdateCycle ());
 			panelSowing.GetComponent<SowingManager> ().SetNewPlantIndex (3);
@@ -355,6 +415,8 @@ public class MasterG : MonoBehaviour
 		{
 			LeaveAllPanels ();
 			panelSowing.gameObject.SetActive (true);
+			placeHolders.gameObject.SetActive (true);
+			ActivatePHSow ();
 
 			StartCoroutine (WaitOneUpdateCycle ());
 			panelSowing.GetComponent<SowingManager> ().SetNewPlantIndex (4);
@@ -372,6 +434,8 @@ public class MasterG : MonoBehaviour
 		{
 			LeaveAllPanels ();
 			panelSowing.gameObject.SetActive (true);
+			placeHolders.gameObject.SetActive (true);
+			ActivatePHSow ();
 
 			StartCoroutine (WaitOneUpdateCycle ());
 			panelSowing.GetComponent<SowingManager> ().SetNewPlantIndex (5);
@@ -389,6 +453,8 @@ public class MasterG : MonoBehaviour
 		{
 			LeaveAllPanels ();
 			panelFertilizing.gameObject.SetActive (true);
+			placeHolders.gameObject.SetActive (true);
+			ActivatePHFertilize ();
 
 			StartCoroutine (WaitOneUpdateCycle ());
 			panelFertilizing.GetComponent<FertilizeManager> ().CheckForFreeSlots ();
@@ -410,6 +476,9 @@ public class MasterG : MonoBehaviour
 	{
 		LeaveAllPanels ();
 		panelRearrangeBegins.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeBegins ();
+
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeBegins.GetComponent<RearrangeInitiator> ().CheckForFreeSlots ();
@@ -420,6 +489,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (0);
@@ -431,6 +502,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (1);
@@ -442,6 +515,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (2);
@@ -453,6 +528,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (3);
@@ -464,6 +541,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (4);
@@ -475,6 +554,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (5);
@@ -486,6 +567,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (6);
@@ -497,6 +580,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (7);
@@ -508,6 +593,8 @@ public class MasterG : MonoBehaviour
 		LeaveAllPanels ();
 		//slots.gameObject.SetActive (false);
 		panelRearrangeFinishes.gameObject.SetActive (true);
+		placeHolders.gameObject.SetActive (true);
+		ActivatePHRearrangeFinishes ();
 
 		StartCoroutine (WaitOneUpdateCycle ());
 		panelRearrangeFinishes.GetComponent<RearrangeFinisher> ().SelectFirstSlotToChange (8);
@@ -581,11 +668,13 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
+
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -656,11 +745,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -731,11 +821,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -806,11 +897,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -881,11 +973,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -956,11 +1049,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -1031,11 +1125,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -1106,11 +1201,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -1181,11 +1277,12 @@ public class MasterG : MonoBehaviour
 			AllGameData.instance.SaveData();
 
 			//FindObjectOfType<SlotManager> ().GetAndSetAllSlotData ();
-			LeaveInfo ();
+			LeaveInfo();
+			BeginRearrange ();
 		}
 		else
 		{
-			LeaveInfo ();
+			BeginRearrange ();
 		}
 	}
 
@@ -2403,6 +2500,15 @@ public class MasterG : MonoBehaviour
 		panelRegularView.GetChild (0).GetComponent<Button> ().interactable = false;
 		panelRegularView.GetChild (1).GetComponent<Button> ().interactable = false;
 		panelRegularView.GetChild (2).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (5).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (6).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (7).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (8).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (9).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (10).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (11).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (12).GetChild(0).GetComponent<Button> ().interactable = false;
+		panelRegularView.GetChild (13).GetChild(0).GetComponent<Button> ().interactable = false;
 		panelRegularView.GetChild (14).GetComponent<Button> ().interactable = false;
 		isWatering = true;
 		show.SetActive(false);
@@ -2412,6 +2518,15 @@ public class MasterG : MonoBehaviour
 			panelRegularView.GetChild (0).GetComponent<Button> ().interactable = false;
 			panelRegularView.GetChild (1).GetComponent<Button> ().interactable = false;
 			panelRegularView.GetChild (2).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (5).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (6).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (7).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (8).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (9).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (10).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (11).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (12).GetChild(0).GetComponent<Button> ().interactable = false;
+			panelRegularView.GetChild (13).GetChild(0).GetComponent<Button> ().interactable = false;
 			panelRegularView.GetChild (14).GetComponent<Button> ().interactable = false;
 			isWatering = true;
 			show.GetComponentInParent<RegularViewManager>().enabled = false;
@@ -2432,6 +2547,15 @@ public class MasterG : MonoBehaviour
 		panelRegularView.GetChild (0).GetComponent<Button> ().interactable = true;
 		panelRegularView.GetChild (1).GetComponent<Button> ().interactable = true;
 		panelRegularView.GetChild (2).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (5).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (6).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (7).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (8).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (9).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (10).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (11).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (12).GetChild(0).GetComponent<Button> ().interactable = true;
+		panelRegularView.GetChild (13).GetChild(0).GetComponent<Button> ().interactable = true;
 		panelRegularView.GetChild (14).GetComponent<Button> ().interactable = true;
 		isWatering = false;
 	}
